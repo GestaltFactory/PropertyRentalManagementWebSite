@@ -1,0 +1,53 @@
+﻿@using PropertyRentalManagementWebSite.Data.Enum
+@model Appartment
+
+<h1>Are you sure you want to delete this appartment?</h1>
+
+<form method="post" asp-action="Delete" enctype="multipart/form-data">
+    <input type="hidden" value="BuildingId" id="BuildingId" />
+    <div class="form-group">
+        <label asp-for="AppartmentNumber">Appartment Number</label>
+        <input asp-for="AppartmentNumber" class="form-control" placeholder="Appartment Number">
+        <span asp-validation-for="AppartmentNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NumberOfPieces">Number Of Pieces</label>
+        <input asp-for="NumberOfPieces" class="form-control" placeholder="Number Of Pieces">
+        <span asp-validation-for="NumberOfPieces" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RentedStatus">Rented Status</label>
+        <select asp-for="RentedStatus" asp-items="@Html.GetEnumSelectList<RentedStatus>()">
+            <option>--Select--</option>
+        </select>
+        <span asp-validation-for="RentedStatus" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PricePerMonth">Price Per Month</label>
+        <input asp-for="PricePerMonth" class="form-control" placeholder="Price Per Month">
+        <span asp-validation-for="PricePerMonth" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RentalStartDate">Rental Start Date</label>
+        <input asp-for="RentalStartDate" class="form-control" placeholder="Rental Start Date">
+        <span asp-validation-for="RentalStartDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RentalEndDate">Rental End Date</label>
+        <input asp-for="RentalEndDate" class="form-control" placeholder="Rental End Date">
+        <span asp-validation-for="RentalEndDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PictureUrl">Picture Url</label>
+        <input asp-for="PictureUrl" type="file" class="form-control" placeholder="Picture Url">
+        <span asp-validation-for="PictureUrl" class="text-danger"></span>
+    </div>
+</form>
+
+<div class="form-group">
+    <form action="Delete" method="post">
+        <input type="hidden" asp-for="BuildingId"/>
+        <input type="submit" value="Confirm" class="btn btn-outline-success float-right" />
+        <a class="btn btn-outline-secondary" asp-controller="Appartment" asp-action="Index">Cancel</a>
+    </form>
+</div>

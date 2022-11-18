@@ -1,0 +1,58 @@
+﻿@using PropertyRentalManagementWebSite.Data.Enum
+@using PropertyRentalManagementWebSite.ViewModels
+@model CreateAppartmentVM
+
+@{
+    ViewData["Title"] = "Add a new appartment";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <p>
+            <h4>Add a new Appartment</h4>
+        </p>
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="col-md-12 alert alert-danger">
+                <span><b>Sorry!</b> - @TempData["Error"] </span>
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form method="post" asp-action="Create" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="AppartmentNumber">Appartment Number</label>
+                        <input asp-for="AppartmentNumber" class="form-control" placeholder="Appartment Number">
+                        <span asp-validation-for="AppartmentNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BuildingId">Building Id</label>
+                        <input asp-for="BuildingId" class="form-control" placeholder="Building Id">
+                        <span asp-validation-for="BuildingId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NumberOfPieces">Number Of Rooms</label>
+                        <input asp-for="NumberOfPieces" class="form-control" placeholder="Number Of Room">
+                        <span asp-validation-for="NumberOfPieces" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PricePerMonth">Price Per Month</label>
+                        <input asp-for="PricePerMonth" class="form-control" placeholder="Price Per Month">
+                        <span asp-validation-for="PricePerMonth" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PictureUrl">Image</label>
+                        <input asp-for="PictureUrl" type="file" class="form-control" placeholder="Image">
+                        <span asp-validation-for="PictureUrl" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-outline-success float-right" type="submit" value="Create Appartment" />
+                        <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

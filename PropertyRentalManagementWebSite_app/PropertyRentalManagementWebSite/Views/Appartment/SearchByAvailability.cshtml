@@ -1,0 +1,58 @@
+﻿@using PropertyRentalManagementWebSite.ViewModels
+@model SearchByAvailabilityVM
+
+<h1>Search by availability</h1>
+<p>WARNING => because of a migration error, my enum that were passed correctly as strings before became numbers and this search seems to have broken because of that. It was working before the migration...</p>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <form method="post" asp-action="SearchByAvailability" enctype="multipart/form-data">
+            <div class="btn-toolbar mb-1" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group btn-group-lg" role="group" aria-label="First group">
+                    <button name="button" class="btn btn-outline-secondary" asp-action="check" value="Available">Available</button>
+                    <button name="button" class="btn btn-outline-secondary" asp-action="check" value="Unavailable">Unavailable</button>
+                </div>
+            </div>
+        </form>
+
+        <div>
+            <label class="form-label">Availability: </label>
+            <label class="form-label bg-info">@TempData["ButtonValue"]</label>
+        </div>
+
+        <hr />
+        <div class="row">
+            @foreach (var item in Model.Appartment)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" src="@item.PictureUrl" width="100%" height="225" alt="Not available">
+                        <div class="card-body">
+                            <p class="card-text">@item.Building.BuildingName</p>
+                            <p class="card-text">Number of rooms: @item.NumberOfPieces</p>
+                            <p class="card-text">Price per month: @item.PricePerMonth</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    @if (User.Identity.IsAuthenticated && (User.IsInRole("owner") || User.IsInRole("manager")))
+                                    {
+                                        <a type="btn btn-success" asp-controller="Appartment" asp-action="Create" class="btn btn-sm btn-outline-secondary">Create</a>
+                                        <a type="btn btn-success" asp-controller="Appartment" asp-action="Detail" asp-route-id="@item.AppartmentNumber" class="btn btn-sm btn-outline-secondary">View</a>
+                                        <a type="btn btn-success" asp-controller="Appartment" asp-action="Edit" asp-route-id="@item.AppartmentNumber" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                        <a type="btn btn-success" asp-controller="Appartment" asp-action="Delete" asp-route-id="@item.AppartmentNumber" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                    }
+                                    else
+                                    {
+                                        <a type="btn btn-success" asp-controller="Appartment" asp-action="Detail" asp-route-id="@item.AppartmentNumber" class="btn btn-sm btn-outline-secondary">View</a>
+                                    }
+                                </div>
+                                <small class="text-muted">@item.Building.Address.City</small>
+                                <small class="text-muted">@item.RentedStatus</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

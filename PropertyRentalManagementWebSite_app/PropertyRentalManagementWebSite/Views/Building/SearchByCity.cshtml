@@ -1,0 +1,63 @@
+﻿@using PropertyRentalManagementWebSite.ViewModels
+@model SearchByCityVM
+
+<h1>Search by city</h1>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <form method="post" asp-action="SearchByCity" enctype="multipart/form-data">
+            <div class="btn-toolbar mb-1" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group btn-group-lg" role="group" aria-label="First group">
+                    <button name="button" class="btn btn-outline-secondary" asp-action="check" value="Longueuil">Longueuil</button>
+                    <button name="button" class="btn btn-outline-secondary" asp-action="check" value="Montreal">Montreal</button>
+                </div>
+            </div>
+        </form>
+
+        <div>
+            <label class="form-label">Selected city: </label>
+            <label class="form-label bg-info">@TempData["ButtonValue"]</label>
+        </div>
+
+        <hr />
+        <div class="row">
+            @foreach (var item in Model.Buildings)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" src="@item.PictureUrl" width="100%" height="225" alt="Not available">
+                        <div class="card-body">
+                            <p class="card-text">@item.BuildingName</p>
+                            <p class="card-text">@item.BuildingDescription</p>
+                            <p class="card-text">Parking included: @item.ParkingIncluded</p>
+                            <p class="card-text">Laundry Service Included: @item.LaundryServiceIncluded</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    @if (User.Identity.IsAuthenticated && User.IsInRole("owner"))
+                                    {
+                                        <a type="btn btn-success" asp-controller="Building" asp-action="Create" class="btn btn-sm btn-outline-secondary">Create</a>
+                                        <a type="btn btn-success" asp-controller="Building" asp-action="Detail" asp-route-id="@item.BuildingId" class="btn btn-sm btn-outline-secondary">View</a>
+                                        <a type="btn btn-success" asp-controller="Building" asp-action="Edit" asp-route-id="@item.BuildingId" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                        <a type="btn btn-success" asp-controller="Building" asp-action="Delete" asp-route-id="@item.BuildingId" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                    }
+                                    else if (User.Identity.IsAuthenticated && User.IsInRole("manager"))
+                                    {
+                                        <a type="btn btn-success" asp-controller="Building" asp-action="Detail" asp-route-id="@item.BuildingId" class="btn btn-sm btn-outline-secondary">View</a>
+                                        <a type="btn btn-success" asp-controller="Building" asp-action="Edit" asp-route-id="@item.BuildingId" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                    }
+                                    else
+                                    {
+                                        <a type="btn btn-success" asp-controller="Building" asp-action="Detail" asp-route-id="@item.BuildingId" class="btn btn-sm btn-outline-secondary">View</a>
+                                    }
+                                </div>
+                                <small class="text-muted">@item.Address.City</small>
+                                <small class="text-muted">Units: @item.NumberOfUnitAvailable/@item.TotalNumberOfUnits</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿@model Appartment
+
+<div class="container">
+
+    <!-- Heading -->
+    <h1 class="my-4">
+        <small>Building information</small>
+    </h1>
+
+    <!-- info items -->
+    <div class="row">
+        <div class="col-md-8">
+            <img class="img-fluid" src="@Model.PictureUrl" alt="Not available">
+        </div>
+        <div class="col-md-4">
+            <h3 class="my-3">@Model.Building.BuildingName</h3>
+            <p>@Model.Building.BuildingDescription</p>
+            <h3 class="my-3">Location</h3>
+            <ul>
+                <li>@Model.Building.Address.StreetNumber</li>
+                <li>@Model.Building.Address.StreetName</li>
+                <li>@Model.AppartmentNumber</li>
+                <li>@Model.Building.Address.City</li>
+                <li>@Model.Building.Address.Province</li>
+                <li>@Model.Building.Address.PostalCode</li>
+            </ul>
+            <h3 class="my-3">Information</h3>
+            <p>Number of rooms: @Model.NumberOfPieces</p>
+            <p>Price per month: @Model.PricePerMonth</p>
+            <p>@Model.RentedStatus</p>
+            @if(@Model.RentedStatus == "Available"){
+                <p>You can contact a rental manager to make an appointment.</p>
+            }      
+            else{
+                <p>Will be available at: @Model.RentalEndDate</p>
+            }            
+            <hr />
+            <p>Parking included: @Model.Building.ParkingIncluded</p>
+            <p>Laundry Service Included: @Model.Building.LaundryServiceIncluded</p>
+        </div>
+    </div>
+
+    <!-- Related Projects Row -->
+    <h3 class="my-4">Other appartment from the same building</h3>
+    <!-- /.row -->
+</div>

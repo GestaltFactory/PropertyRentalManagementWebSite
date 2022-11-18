@@ -1,0 +1,161 @@
+﻿@using PropertyRentalManagementWebSite.ViewModels
+@model AppointmentVM
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<Account> SignInManager
+@inject UserManager<Account> UserManager
+@{
+    var usr = await UserManager.GetUserAsync(User);
+    var email = usr?.Email;
+}
+
+<p>WARNING => Was unable to make the data return to the controller. There must be a way, but i do not know js and jquery and everyhting i found was with it...</p>
+
+<div class="accordion" id="accordionPanelsStayOpenExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                Please select a date and time for your appointment...
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+            <div class="accordion-body">
+                <form method="post" asp-action="MakeAppointment" enctype="multipart/form-data">
+                    <div class="h5 mb-0 flex-grow-1">
+                        <h1>Appointment Date Selector</h1>
+                        <hr />
+                        <p>Please click on a number to select the day of the appointment</p>
+                        <div class="btn-toolbar mb-1" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group btn-group-lg" role="group" aria-label="First group">
+                                <button type="button" class="btn btn-outline-secondary disabled">Su</button>
+                                <button type="button" class="btn btn-outline-secondary disabled">mo</button>
+                                <button type="button" class="btn btn-outline-secondary disabled">Tu</button>
+                                <button type="button" class="btn btn-outline-secondary disabled">We</button>
+                                <button type="button" class="btn btn-outline-secondary disabled">Th</button>
+                                <button type="button" class="btn btn-outline-secondary disabled">Fr</button>
+                                <button type="button" class="btn btn-outline-secondary disabled">Sa&nbsp</button>
+                            </div>
+                        </div>
+                        <div class="btn-toolbar mb-1" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group btn-group-lg " role="group" aria-label="First group">
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="1">1&nbsp&nbsp</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="2">2&nbsp&nbsp&nbsp</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="3">3&nbsp&nbsp</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="4">4&nbsp&nbsp&nbsp</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="5">5&nbsp&nbsp</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="6">6&nbsp&nbsp</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="7">7&nbsp&nbsp&nbsp</button>
+                            </div>
+                        </div>
+                        <div class="btn-toolbar mb-1" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group btn-group-lg" role="group" aria-label="First group">
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="8">8&nbsp&nbsp</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="9">9&nbsp&nbsp&nbsp</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="10">10</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="11">11&nbsp</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="12">12</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="13">13</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="14">14&nbsp</button>
+                            </div>
+                        </div>
+                        <div class="btn-toolbar mb-1" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group btn-group-lg" role="group" aria-label="First group">
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="15">15</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="16">16&nbsp</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="17">17</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="18">18&nbsp</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="19">19</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="20">20</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="21">21&nbsp</button>
+                            </div>
+                        </div>
+                        <div class="btn-toolbar mb-1" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group btn-group-lg" role="group" aria-label="First group">
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="22">22</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="23">23&nbsp</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="24">24</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="25">25&nbsp</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="26">26</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="27">27</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="28">28</button>
+                            </div>
+                        </div>
+                        <div class="btn-toolbar mb-1" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group btn-group-lg" role="group" aria-label="First group">
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="29">29</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="30">30&nbsp</button>
+                                <button name="button" class="btn btn-outline-secondary" asp-action="check" value="31">31</button>
+
+                                <button name="button" class="btn btn-outline-secondary ms-5" asp-action="check" value="">Reset</button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div>
+                            <label class="form-label">Selected date: </label>
+                            <label class="form-label bg-info">@TempData["ButtonValue"]</label>
+                        </div>
+                        <div>
+                            Appointment starts at:
+                            <input class="form-control" type="time" asp-for="Appointment.TimeStart" name="Time" />
+                        </div>
+                        <div>
+                            Appointment ends at:
+                            <input class="form-control" type="time" asp-for="Appointment.TimeStart" name="Time" />
+                        </div>
+                        <br />
+                        <hr />
+                        <div class="form-group">
+                            <p>Select a tenant from the account list: </p>
+                            <label asp-for="Accounts">Accounts</label>
+                            <select asp-for="Accounts" asp-items="new SelectList(ViewBag.Users)"></select>
+                            <span asp-validation-for="Accounts" class="text-danger"></span>
+                        </div>
+                        <hr />
+                        <br />
+                        <div class="mb-3">
+                            Additional information: 
+                            <textarea asp-for="Appointment.Information" class="form-control" id="message" rows="5"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input class="btn btn-outline-success float-right" type="submit" value="Make Appointment" />
+                            <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">Cancel</a>
+                        </div>
+                    </div>
+                </form>           
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                My list of appointments...
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+            <div class="accordion-body">
+               
+
+                <div class="album py-5 bg-light">
+                    <div class="container">
+                        <h2 class="display-4 fw-normal"></h2>
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                            @foreach (var userMeeting in Model.Appointments)
+                            {
+                                @if (userMeeting.ReceiverEmail == @email)
+                                {
+                                    <label asp-for="@userMeeting.SenderEmail">From: @userMeeting.SenderEmail</label>
+                                    <input asp-for="@userMeeting.Date" class="form-control" disabled />
+                                    <input asp-for="@userMeeting.TimeStart" class="form-control" disabled />
+                                    <input asp-for="@userMeeting.TimeEnd" class="form-control" disabled />
+                                    <input asp-for="@userMeeting.Information" class="form-control" disabled />
+                                }
+                                <hr />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Appartment>
+
+<h1>Appartment Page</h1>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        @if ((User.Identity.IsAuthenticated && User.IsInRole("owner") || User.Identity.IsAuthenticated && User.IsInRole("manager")) && Model.Count() == 0)
+        {
+            <a type="btn btn-success" asp-controller="Appartment" asp-action="Create" class="btn btn-sm btn-outline-secondary">Create</a>
+        }       
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+            <a type="btn btn-success" asp-controller="Appartment" asp-action="SearchByAvailability" class="btn btn-sm btn-outline-secondary">Search by availability</a>
+        </form>
+        <hr />
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" src="@item.PictureUrl" width="100%" height="225" alt="Not available">
+                        <div class="card-body">
+                            <p class="card-text">@item.Building.BuildingName</p>
+                            <p class="card-text">Number of rooms: @item.NumberOfPieces</p>
+                            <p class="card-text">Price per month: @item.PricePerMonth</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    @if (User.Identity.IsAuthenticated && (User.IsInRole("owner") || User.IsInRole("manager")))
+                                    {
+                                        <a type="btn btn-success" asp-controller="Appartment" asp-action="Create" class="btn btn-sm btn-outline-secondary">Create</a>
+                                        <a type="btn btn-success" asp-controller="Appartment" asp-action="Detail" asp-route-id="@item.AppartmentNumber" class="btn btn-sm btn-outline-secondary">View</a>
+                                        <a type="btn btn-success" asp-controller="Appartment" asp-action="Edit" asp-route-id="@item.AppartmentNumber" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                        <a type="btn btn-success" asp-controller="Appartment" asp-action="Delete" asp-route-id="@item.AppartmentNumber" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                    }
+                                    else
+                                    {
+                                        <a type="btn btn-success" asp-controller="Appartment" asp-action="Detail" asp-route-id="@item.AppartmentNumber" class="btn btn-sm btn-outline-secondary">View</a>
+                                    }
+                                </div>
+                                <small class="text-muted">@item.Building.Address.City</small>
+                                <small class="text-muted">@item.RentedStatus</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+﻿@using PropertyRentalManagementWebSite.ViewModels
+@model AdminRegisterVM
+
+@{
+    ViewData["Title"] = "Enter a new manager";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <p>
+            <h4>Sign up a new manager</h4>
+        </p>
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="col-md-12 alert alert-danger">
+                <span><b>Sorry!</b> - @TempData["Error"] </span>
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="AdminRegister">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="FirstName">First Name</label>
+                        <input asp-for="FirstName" class="form-control" placeholder="First Name">
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LastName">Last Name</label>
+                        <input asp-for="LastName" class="form-control" placeholder="Last Name">
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Age">Age</label>
+                        <input asp-for="Age" class="form-control" placeholder="Age">
+                        <span asp-validation-for="Age" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address.StreetNumber">Street Number</label>
+                        <input asp-for="Address.StreetNumber" class="form-control" placeholder="Street Number">
+                        <span asp-validation-for="Address.StreetNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address.StreetName">Street Name</label>
+                        <input asp-for="Address.StreetName" class="form-control" placeholder="Street Name">
+                        <span asp-validation-for="Address.StreetName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address.City">City</label>
+                        <input asp-for="Address.City" class="form-control" placeholder="City">
+                        <span asp-validation-for="Address.City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address.Province">Province</label>
+                        <input asp-for="Address.Province" class="form-control" placeholder="State">
+                        <span asp-validation-for="Address.Province" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address.PostalCode">Postal Code</label>
+                        <input asp-for="Address.PostalCode" class="form-control" placeholder="State">
+                        <span asp-validation-for="Address.PostalCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword" class="control-label"></label>
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="btn btn-outline-success float-right" type="submit" value="Add a manager" />
+                        <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

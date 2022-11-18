@@ -1,0 +1,109 @@
+﻿@using PropertyRentalManagementWebSite.ViewModels
+@model ComposeMessageVM
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<Account> SignInManager
+@inject UserManager<Account> UserManager
+@{
+    var usr = await UserManager.GetUserAsync(User);
+    var email = usr?.Email;
+}
+
+
+<h1>Communication</h1>
+
+<div class="accordion" id="accordionPanelsStayOpenExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                Send a message...
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-md-8 offset-2">
+                        <form method="post" asp-action="SendMessage" enctype="multipart/form-data">
+                            @*<input type="hidden" id="AppUserId" name="AppUserId" asp-for="AppUserId" />*@
+                            <div class="mb-3">
+                                <label asp-for="DestinationEmail" class="form-label">Email address</label>
+                                <input asp-for="DestinationEmail" type="email" class="form-control" id="recipientEmail" placeholder="name@provider.com">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SubjectTitle">Subject Title</label>
+                                <input asp-for="SubjectTitle" class="form-control" placeholder="Subject Title">
+                                <span asp-validation-for="SubjectTitle" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="MessageContent" class="form-label">Message</label>
+                                <textarea asp-for="MessageContent" class="form-control" id="message" rows="5"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input class="btn btn-outline-success float-right" type="submit" value="Send Message" />
+                                <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                 Message received...
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+            <div class="accordion-body">
+                
+                <div class="album py-5 bg-light">
+                    <div class="container">
+                        <h2 class="display-4 fw-normal"></h2>
+                        <hr />
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                            @foreach (var receiver in Model.Messages)
+                            {
+                                @if (receiver.DestinationEmail == @email)
+                                {
+                                    <label asp-for="@receiver.SenderEmail">From: @receiver.SenderEmail</label>
+                                    <label asp-for="@receiver.SubjectTitle">About: @receiver.SubjectTitle</label>
+                                    <input asp-for="@receiver.MessageContent" class="form-control" disabled />
+                                }
+                                <hr />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                People you can contact to rent an appartment...
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+            <div class="accordion-body">
+                <div class="album py-5 bg-light">
+                    <div class="container">
+                        <h2 class="display-4 fw-normal"></h2>
+                        <hr />
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                            @foreach (var item in Model.Accounts)
+                            {
+                                @if (item.AccountRole == "manager")
+                                {
+                                    <label asp-for="@item.FirstName" class="control-label">@item.FirstName</label>
+                                    <input asp-for="@item.Email" class="form-control" />
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

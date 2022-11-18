@@ -1,0 +1,92 @@
+﻿@using PropertyRentalManagementWebSite.Data.Enum
+@using PropertyRentalManagementWebSite.ViewModels
+@model CreateBuildingVM
+
+@{
+    ViewData["Title"] = "Add a new Building";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <p>
+            <h4>Add a new Building</h4>
+        </p>
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="col-md-12 alert alert-danger">
+                <span><b>Sorry!</b> - @TempData["Error"] </span>
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form method="post" asp-action="Create" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="BuildingName">Building Name</label>
+                        <input asp-for="BuildingName" class="form-control" placeholder="Building Name">
+                        <span asp-validation-for="BuildingName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BuildingDescription">Building Description</label>
+                        <input asp-for="BuildingDescription" class="form-control" placeholder="Building Description">
+                        <span asp-validation-for="BuildingDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address.StreetNumber">Street Number</label>
+                        <input asp-for="Address.StreetNumber" class="form-control" placeholder="Street Number">
+                        <span asp-validation-for="Address.StreetNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address.StreetName">Street Name</label>
+                        <input asp-for="Address.StreetName" class="form-control" placeholder="Street Name">
+                        <span asp-validation-for="Address.StreetName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address.City">City</label>
+                        <input asp-for="Address.City" class="form-control" placeholder="City">
+                        <span asp-validation-for="Address.City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address.Province">Province</label>
+                        <input asp-for="Address.Province" class="form-control" placeholder="State">
+                        <span asp-validation-for="Address.Province" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address.PostalCode">Postal Code</label>
+                        <input asp-for="Address.PostalCode" class="form-control" placeholder="State">
+                        <span asp-validation-for="Address.PostalCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TotalNumberOfUnits">Total Number Of Units</label>
+                        <input asp-for="TotalNumberOfUnits" class="form-control" placeholder="Total Number Of Units">
+                        <span asp-validation-for="TotalNumberOfUnits" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ParkingIncluded">Parking Included</label>
+                        <select asp-for="ParkingIncluded" asp-items="@Html.GetEnumSelectList<IsServiceOffered>()">
+                            <option>--Select--</option>
+                        </select>
+                        <span asp-validation-for="ParkingIncluded" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LaundryServiceIncluded">Laundry Service Included</label>
+                        <select asp-for="LaundryServiceIncluded" asp-items="@Html.GetEnumSelectList<IsServiceOffered>()">
+                           <option>--Select--</option>
+                        </select>
+                        <span asp-validation-for="LaundryServiceIncluded" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PictureUrl">Image</label>
+                        <input asp-for="PictureUrl" type="file" class="form-control" placeholder="Image">
+                        <span asp-validation-for="PictureUrl" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-outline-success float-right" type="submit" value="Create Building" />
+                        <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

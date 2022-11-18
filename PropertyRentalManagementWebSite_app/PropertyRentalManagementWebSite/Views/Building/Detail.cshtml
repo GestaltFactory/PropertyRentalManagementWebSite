@@ -1,0 +1,37 @@
+﻿@model Building
+
+<div class="container">
+
+    <!-- Heading -->
+    <h1 class="my-4">
+        <small>Building information</small>
+    </h1>
+
+    <!-- info items -->
+    <div class="row">
+        <div class="col-md-8">
+            <img class="img-fluid" src="@Model.PictureUrl" alt="Not available">
+        </div>
+        <div class="col-md-4">
+            <h3 class="my-3">@Model.BuildingName</h3>
+            <p>@Model.BuildingDescription</p>
+            <h3 class="my-3">Location</h3>
+            <ul>
+                <li>@Model.Address.StreetNumber</li>
+                <li>@Model.Address.StreetName</li>
+                <li>@Model.Address.City</li>
+                <li>@Model.Address.Province</li>
+                <li>@Model.Address.PostalCode</li>
+            </ul>
+            <h3 class="my-3">Information</h3>
+            <p>Parking included: @Model.ParkingIncluded</p>
+            <p>Laundry Service Included: @Model.LaundryServiceIncluded</p>
+            <p>Total number of units to rent: @Model.TotalNumberOfUnits</p>
+            <p>Number of unit available: @Model.NumberOfUnitAvailable</p>
+        </div>
+    </div>
+
+    <!-- Related Projects Row -->
+    <h3 class="my-4">Units Available</h3>
+    <!-- /.row -->
+</div>
