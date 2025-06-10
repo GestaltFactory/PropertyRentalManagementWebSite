@@ -65,18 +65,26 @@ Additional Notes
     Cloudinary image upload will fail unless configured with valid credentials or replaced with a mock/local image storage service.
     The project includes clean separation of concerns: models, repositories, services, and view models are all organized into folders.
 
+<p align="center"> 
+    <img src="https://github.com/GestaltFactory/PropertyRentalManagementWebSite/blob/main/01.PNG" width="45%"> 
+</p>
 
+<p align="center"> 
+    <img src="https://github.com/GestaltFactory/PropertyRentalManagementWebSite/blob/main/02.PNG" width="45%"> 
+</p>
 
+<p align="center"> 
+    <img src="https://github.com/GestaltFactory/PropertyRentalManagementWebSite/blob/main/03.PNG" width="45%"> 
+</p>
 
+<p align="center"> 
+    <img src="https://github.com/GestaltFactory/PropertyRentalManagementWebSite/blob/main/04.PNG" width="45%"> 
+</p>
 
+<p align="center"> 
+    <img src="https://github.com/GestaltFactory/PropertyRentalManagementWebSite/blob/main/05.PNG" width="45%"> 
+</p>
 
-
-
-
-
-
-
-
-
-
-    
+<p align="center"> 
+    <img src="https://github.com/GestaltFactory/PropertyRentalManagementWebSite/blob/main/06.PNG" width="45%"> 
+</p>
