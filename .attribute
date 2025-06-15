@@ -1,0 +1,23 @@
+# C# files
+*.cs linguist-language=C#
+
+# Razor files (used in ASP.NET projects)
+*.cshtml linguist-language=Razor
+*.razor linguist-language=Razor
+
+# HTML
+*.html linguist-language=HTML
+
+# CSS
+*.css linguist-language=CSS
+
+# Bootstrap is CSS + JS framework; GitHub detects it by usage
+# but you can tag .bootstrap.css or custom bootstrap files explicitly:
+*bootstrap*.css linguist-language=CSS
+*bootstrap*.js linguist-language=JavaScript
+
+# Treat certain folders or files as vendor (e.g. Bootstrap dist)
+dist/** linguist-vendored
+vendor/** linguist-vendored
+node_modules/** linguist-vendored
+wwwroot/lib/** linguist-vendored
