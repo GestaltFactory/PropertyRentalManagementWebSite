@@ -1,6 +1,28 @@
-# Force language percentages
+# Backend (ASP.NET logic)
 *.cs linguist-language=C#
+
+# Razor Views
 *.cshtml linguist-language=Razor
 *.razor linguist-language=Razor
+
+# Frontend
 *.html linguist-language=HTML
 *.css linguist-language=CSS
+*.js linguist-language=JavaScript
+
+# Bootstrap or custom frontend libraries
+*bootstrap*.css linguist-language=CSS
+*bootstrap*.js linguist-language=JavaScript
+
+# Force inclusion of frontend files if GitHub assumes they're vendored
+*.cshtml linguist-vendored=false
+*.razor linguist-vendored=false
+*.html linguist-vendored=false
+*.css linguist-vendored=false
+*.js linguist-vendored=false
+
+# Avoid excluding important folders used in ASP.NET Core
+!wwwroot/css/**
+!wwwroot/js/**
+!Pages/**
+!Views/**
