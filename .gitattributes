@@ -1,28 +1,31 @@
-# Backend (ASP.NET logic)
+# Set default normalization (avoid line-ending issues)
+* text=auto
+
+# C# backend
 *.cs linguist-language=C#
+*.cs text eol=lf
 
-# Razor Views
-*.cshtml linguist-language=Razor
-*.razor linguist-language=Razor
+# Razor views
+*.cshtml linguist-language=Razor text eol=lf
+*.razor linguist-language=Razor text eol=lf
 
-# Frontend
-*.html linguist-language=HTML
-*.css linguist-language=CSS
-*.js linguist-language=JavaScript
+# Frontend markup and styles
+*.html linguist-language=HTML text eol=lf
+*.css linguist-language=CSS text eol=lf
+*.js linguist-language=JavaScript text eol=lf
 
-# Bootstrap or custom frontend libraries
-*bootstrap*.css linguist-language=CSS
-*bootstrap*.js linguist-language=JavaScript
+# Bootstrap files (ensures they’re treated as your code, not third-party)
+*bootstrap*.css linguist-language=CSS text eol=lf linguist-vendored=false
+*bootstrap*.js linguist-language=JavaScript text eol=lf linguist-vendored=false
 
-# Force inclusion of frontend files if GitHub assumes they're vendored
-*.cshtml linguist-vendored=false
-*.razor linguist-vendored=false
-*.html linguist-vendored=false
-*.css linguist-vendored=false
-*.js linguist-vendored=false
+# Avoid excluding your own files from stats
+wwwroot/css/** linguist-vendored=false
+wwwroot/js/** linguist-vendored=false
+Views/** linguist-vendored=false
+Pages/** linguist-vendored=false
 
-# Avoid excluding important folders used in ASP.NET Core
-!wwwroot/css/**
-!wwwroot/js/**
-!Pages/**
-!Views/**
+# Optionally treat images and assets as binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
